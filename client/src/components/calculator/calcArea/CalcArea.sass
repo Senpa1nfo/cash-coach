@@ -1,0 +1,134 @@
+.calcArea
+    display: flex
+    flex-direction: column
+    h2  
+        margin-top: 25px
+        text-align: center
+    &__wrapper
+        display: flex
+        justify-content: space-between
+    &__row
+        display: flex
+    &__col
+        display: flex
+        flex-direction: column
+    &__buttons
+        display: flex
+        justify-content: space-around
+        align-items: center
+        width: 100%
+        height: 80px
+        background: rgba(23, 35, 51, 0.4)
+        border-radius: 15px
+    &__btn
+        width: 190px
+        height: 45px
+        outline: none
+        border: none
+        background: rgba(80, 110, 131, 0.2)
+        border-radius: 15px
+        font-weight: 500
+        font-size: 14px
+        color: #FFFFFF
+        margin-right: 20px
+        transition: all 0.5s
+        &__active
+            height: 50px
+            font-size: 16px
+            background: rgba(80, 110, 131, 0.8)
+        &:hover
+            height: 50px
+            font-size: 16px
+            background: rgba(80, 110, 131, 0.8)
+    &__input
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        height: 400px
+    label
+        position: relative
+        &:hover
+            opacity: 75%
+            cursor: pointer
+            &::before 
+                content: attr(data-tooltip)
+                position: absolute
+                top: -50px
+                left: 0
+                width: 100%
+                background-color: #0f0f0f
+                color: #fff
+                padding: 5px
+                border-radius: 5px
+                font-size: 14px
+                text-align: center
+    &__col
+        &:first-of-type
+            width: 200px
+        &:nth-of-type(2)
+            width: 150px
+            label
+                &:hover
+                    &::before 
+                        top: -70px      
+    &__row
+        display: flex
+        width: 400px
+        justify-content: space-between
+        input[type='number'] 
+            width: 100%
+            height: 50px
+            border: none
+            background: rgba(255, 255, 255, 0.06)
+            box-shadow: inset 0px 1px 2px rgba(239, 232, 232, 0.6)
+            border-radius: 15px
+            padding: 18px 40px 18px 22px
+            font-weight: 500
+            font-size: 14px
+            color: #DCDCDC
+            outline: none
+        select
+            width: 100%
+            height: 50px
+            background: rgba(255, 255, 255, 0.06)
+            box-shadow: inset 0px 1px 2px rgba(239, 232, 232, 0.6)
+            border-radius: 15px
+            border: none
+            font-size: 14px
+            color: #DCDCDC
+            outline: none
+            padding: 10px
+            option
+                background-color: #0e0e0eb6
+                color: #DCDCDC
+    .wrapper
+        position: relative   
+    &__div-table
+        max-height: 550px
+        margin-top: 20px
+        width: 1000px
+    &__table
+        max-height: 580px
+        border-spacing: 0 5px
+        &__list
+            display: flex
+            position: absolute
+            width: 1000px
+            list-style-type: none
+            justify-content: space-around
+            height: 30px
+            align-items: center
+            margin: 0
+            padding: 0
+        thead
+            height: 0
+        &__th
+            width: 200px
+            &:first-child
+                width: 50px
+        &__body
+            max-height: 780px
+        &__td
+            text-align: center
+            border-bottom: 1px solid #6766669a
+            height: 50px
