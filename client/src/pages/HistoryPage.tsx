@@ -1,8 +1,7 @@
-import style from '../styles/history.module.css'
 
 const HistoryPage = () => {
     return (
-        <div className={style.text}>
+        <div>
             History
         </div>
     );

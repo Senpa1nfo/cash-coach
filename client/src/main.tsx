@@ -4,7 +4,7 @@ import App from './App.tsx'
 import AuthStore from './stores/AuthStore';
 import {BrowserRouter} from "react-router-dom";
 import './styles/index.css';
-import HistoryStore from "./stores/HistoryStore.ts";
+import HistoryStore from "./stores/HistoryStore";
 
 interface State {
     authStore: AuthStore,
