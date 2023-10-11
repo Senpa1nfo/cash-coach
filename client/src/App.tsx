@@ -1,44 +1,46 @@
-import {useContext, useEffect, useState} from 'react';
-import {observer} from 'mobx-react-lite';
-import Header from './components/header/Header';
-import Adding from './components/adding/Adding';
-import Menu from './components/menu/Menu';
-import WorkingArea from './components/workingArea/WorkingArea';
+import {useContext, useEffect} from 'react';
 import {Context} from "./main.tsx";
+import {Navigate, Route, Routes} from "react-router-dom";
+import {observer} from "mobx-react-lite";
+import HistoryPage from "./pages/HistoryPage.tsx";
+import SignInPage from "./pages/SignInPage.tsx";
+import SignUpPage from "./pages/SignUpPage.tsx";
+import ErrorPage from "./pages/ErrorPage.tsx";
+import CalculatorsPage from "./pages/CalculatorsPage.tsx";
+import StatisticsPage from "./pages/StatisticsPage.tsx";
+import MainPage from "./pages/MainPage.tsx";
 
-const App = () => {
+const App = observer(() => {
 
-    const {store} = useContext(Context);
-    const [changeBoolean, setChangeBoolean] = useState<boolean>();
-
-    const getBool = (bool: boolean) => {
-        setChangeBoolean(bool);
-    }
+    const {authStore} = useContext(Context);
 
     useEffect(() => {
         if (localStorage.getItem('token')) {
-            store.checkAuth();
+            authStore.checkAuth();
         }
-    }, [store]);
-
-    if (!store.isAuth) {
-        return (
-            <Header/>
-        )
-    }
+    }, [authStore]);
 
     return (
-        <div>
-            <Header></Header>
-            <main>
-                <Adding getChangeBool={getBool}></Adding>
-                <div className="main-area-wrapper">
-                    <Menu></Menu>
-                    <WorkingArea getBool={changeBoolean}></WorkingArea>
-                </div>
-            </main>
-        </div>
+        <>
+            <Routes>
+                {authStore.isAuth ? (
+                    <>
+                        <Route path='/history' element={<HistoryPage/>}/>
+                        <Route path='/statistics' element={<StatisticsPage/>}/>
+                        <Route path='/calculator' element={<CalculatorsPage/>}/>
+                        <Route path='/' element={<Navigate to='/history'/>}/>
+                    </>
+                ) : (
+                    <>
+                        <Route path='/signin' element={<SignInPage/>}/>
+                        <Route path='/signup' element={<SignUpPage/>}/>
+                        <Route path='/' element={<MainPage/>}/>
+                    </>
+                )}
+                <Route path='*' element={<ErrorPage/>}/>
+            </Routes>
+        </>
     );
-}
+})
 
-export default observer(App);
+export default App;
